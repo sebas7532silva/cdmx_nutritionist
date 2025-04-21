@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gracias - WhatsApp</title>
+    <meta property="og:title" content="Gracias - WhatsApp">
+    <meta property="og:description" content="Gracias - WhatsApp">
+    <meta property="og:type" content="website">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>const SHEETS_CSV_DATA=[{url:"https://docs.google.com/spreadsheets/d/e/2PACX-1vRHnnh26mn9TwmJIUBI7nDkZ_8h1UHN2Gp9SsBxfmloaOpTCjd7ZG0mcaBwZ2lx23lH9rJQQp_s0JAv/pub?gid=109611670&single=true&output=csv",nombre:"CELULA 1"},{url:"https://docs.google.com/spreadsheets/d/e/2PACX-1vRHnnh26mn9TwmJIUBI7nDkZ_8h1UHN2Gp9SsBxfmloaOpTCjd7ZG0mcaBwZ2lx23lH9rJQQp_s0JAv/pub?gid=207598793&single=true&output=csv",nombre:"CELULA 2"},{url:"https://docs.google.com/spreadsheets/d/e/2PACX-1vRHnnh26mn9TwmJIUBI7nDkZ_8h1UHN2Gp9SsBxfmloaOpTCjd7ZG0mcaBwZ2lx23lH9rJQQp_s0JAv/pub?gid=1099788342&single=true&output=csv",nombre:"CELULA 3"},{url:"https://docs.google.com/spreadsheets/d/e/2PACX-1vRHnnh26mn9TwmJIUBI7nDkZ_8h1UHN2Gp9SsBxfmloaOpTCjd7ZG0mcaBwZ2lx23lH9rJQQp_s0JAv/pub?gid=303719368&single=true&output=csv",nombre:"CELULA 4"},{url:"https://docs.google.com/spreadsheets/d/e/2PACX-1vRHnnh26mn9TwmJIUBI7nDkZ_8h1UHN2Gp9SsBxfmloaOpTCjd7ZG0mcaBwZ2lx23lH9rJQQp_s0JAv/pub?gid=995714169&single=true&output=csv",nombre:"CELULA 5"},{url:"https://docs.google.com/spreadsheets/d/e/2PACX-1vRHnnh26mn9TwmJIUBI7nDkZ_8h1UHN2Gp9SsBxfmloaOpTCjd7ZG0mcaBwZ2lx23lH9rJQQp_s0JAv/pub?gid=758569167&single=true&output=csv",nombre:"CELULA 6"}];function log(e,a=null,n="#0066cc"){const o=`background: ${n}; color: white; padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 14px;`;console.log(`%c[🔍 Tracking System] ${e}`,o,a||"")}function logSuccess(e,a=null){log(`🎉 ${e}`,a,"#28a745")}function logWarning(e,a=null){log(`⚠️ ${e}`,a,"#ffc107")}function logError(e,a=null){log(`❌ ${e}`,a,"#dc3545")}function normalizeDomain(e){return e.toLowerCase().replace(/^https?:\/\//,"").replace(/^www\./,"").replace(/\/$/,"")}function getCurrentDomain(){return normalizeDomain(window.location.hostname)}async function loadConfiguration(){const e=getCurrentDomain();log(`🌐 Dominio actual: ${e}`);for(const a of SHEETS_CSV_DATA){const n=await fetchConfigurationFromSheet(a.url,e,a.nombre);if(n)return n}throw new Error(`No se encontró configuración para: ${e}`)}async function fetchConfigurationFromSheet(e,a,n){const o=await fetch(e),t=(await o.text()).split("\n").filter((e=>e.trim())),r=t[0].toLowerCase().split(",").map((e=>e.trim())),i={sitioweb:r.indexOf("sitioweb"),googletagid:r.indexOf("googletagid"),whatsappeventid1:r.indexOf("whatsappeventid1"),llamadaeventid:r.indexOf("llamadaeventid"),rutagraciastelefono:r.indexOf("rutagraciastelefono"),rutagraciaswhatsapp:r.indexOf("rutagraciaswhatsapp")};if(Object.values(i).includes(-1))throw new Error("Faltan columnas requeridas en el CSV");for(let e=1;e<t.length;e++){const o=t[e].split(",").map((e=>e.trim())),r=normalizeDomain(o[i.sitioweb]);if(r===a){const e={sitioWeb:r,googleTagId:o[i.googletagid],whatsappEventId1:o[i.whatsappeventid1],llamadaEventId:o[i.llamadaeventid],rutaGraciasTelefono:o[i.rutagraciastelefono]||"land/gracias-telefono/",rutaGraciasWhatsapp:o[i.rutagraciaswhatsapp]||"land/gracias-whatsapp/"};return logSuccess(`🔑 Configuración encontrada en ${n}`,e),e}}return logWarning(`⚠️ No se encontró configuración en ${n}`),null}function initializeGoogleTag(e){return new Promise((a=>{try{function n(){dataLayer.push(arguments)}log(`🛠️ Iniciando Google Tag Manager para ID: ${e.googleTagId}`),window.dataLayer=window.dataLayer||[],window.gtag=n,n("js",new Date),n("config",e.googleTagId);const o=document.createElement("script");o.async=!0,o.src=`https://www.googletagmanager.com/gtag/js?id=${e.googleTagId}`,o.onload=()=>{logSuccess("🎉 Google Tag Manager cargado correctamente"),a()},o.onerror=e=>{logError("Error cargando Google Tag Manager:",e),a()},document.head.appendChild(o)}catch(t){logError("Error inicializando Google Tag Manager:",t),a()}}))}function handleConversion(e,a,n){return new Promise((n=>{try{if(log(`📊 Iniciando conversión: ${a} con ID: ${e}`),!e)return logError("ID de evento no válido"),void n();const o=()=>{window.gtag("event","conversion",{send_to:e,event_callback:()=>{logSuccess(`✅ Conversión completada: Tipo: ${a}, ID de Evento: ${e}`),n()}}),setTimeout(n,3e3)};if("function"!=typeof window.gtag){logWarning("❌ gtag no está definido, esperando...");let e=0;const a=setInterval((()=>{e++,"function"==typeof window.gtag?(clearInterval(a),o()):e>=5&&(clearInterval(a),logError("❌ No se pudo cargar gtag después de varios intentos"),n())}),1e3)}else o()}catch(e){logError(`Error al disparar evento ${a}:`,e),n()}}))}async function checkAndHandleThankYouPage(e){try{const a=window.location.pathname;log(`📝 Verificando página actual: ${a}`);let n=!1,o=null;return a.includes("gracias-telefono")&&e.llamadaEventId?(log("📞 Página de gracias de teléfono detectada"),await handleConversion(e.llamadaEventId,"Llamada",e),n=!0,o={tipo:"Llamada",id:e.llamadaEventId}):a.includes("gracias-whatsapp")&&e.whatsappEventId1&&(log("💬 Página de gracias de WhatsApp detectada"),await handleConversion(e.whatsappEventId1,"WhatsApp",e),n=!0,o={tipo:"WhatsApp",id:e.whatsappEventId1}),n&&o?logSuccess(`✅ Conversión ejecutada exitosamente para ${o.tipo} con ID: ${o.id}`):logWarning("⚠️ No se ejecutó ninguna conversión."),n}catch(e){return logError("Error verificando página de gracias:",e),!1}}function setupEventListeners(e){try{log("🛠️ Configurando event listeners...");const a=document.querySelectorAll("a");log(`🔗 Enlaces encontrados: ${a.length}`),a.forEach((a=>{const n=a.getAttribute("href");n&&a.addEventListener("click",(function(a){a.preventDefault(),log("➡️ Click en enlace:",n);let o="";n.startsWith("tel:")?(log("📞 Click en enlace de teléfono:",n),o=e.rutaGraciasTelefono,window.open(n,"_blank")):(n.startsWith("https://wa.me/")||n.startsWith("https://api.whatsapp.com/"))&&(log("💬 Click en enlace de WhatsApp:",n),o=e.rutaGraciasWhatsapp,window.open(n,"_blank")),o?(log("🔄 Redireccionando a página de agradecimiento:",o),window.location.href=o):(log("🌐 Navegando a enlace estándar:",n),window.location.href=n)}))})),logSuccess("✅ Event listeners configurados correctamente")}catch(e){logError("Error configurando event listeners:",e)}}async function initializeTrackingSystem(){log("🚀 Iniciando sistema de tracking...");const e=await loadConfiguration();if(!e)return void logError(`No se pudo inicializar el tracking para: ${getCurrentDomain()}`);logSuccess("✅ Configuración cargada exitosamente:",e),await initializeGoogleTag(e),await new Promise((e=>setTimeout(e,1e3)));const a=await checkAndHandleThankYouPage(e);log(`📝 Resultado de verificación de página de gracias: ${a}`),a||("loading"===document.readyState?document.addEventListener("DOMContentLoaded",(()=>setupEventListeners(e))):setupEventListeners(e))}log("🚀 Script cargado, iniciando sistema..."),initializeTrackingSystem();</script>
+</head>
+<body>
+    <header id="header" class="header d-flex justify-content-center align-items-center text-center"
+        style="min-height: 100vh;" data-aos="fade-down">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <img src="https://nutriologoencdmx.com/images/logo.png" width="200px" class="logo mb-4">
+                    <h1 data-aos="fade-up" class="display-4">¡Gracias por contactarnos!</h1>
+                    <p data-aos="fade-up" data-aos-delay="200" class="lead">Hemos recibido tu mensaje y nos pondremos en
+                        contacto contigo lo antes posible.</p>
+                    <div class="d-flex justify-content-center align-items-center mt-4">
+                        <a href="" class="btn btn-primary btn-lg mr-3">
+                            <i class="fas fa-home"></i> Visita nuestro sitio
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script>
+        const emptyLinks = document.querySelectorAll('a[href=""]');
+        emptyLinks.forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                window.location.href = window.location.origin;
+            });
+        });
+    </script>
+</body>
+
+</html>

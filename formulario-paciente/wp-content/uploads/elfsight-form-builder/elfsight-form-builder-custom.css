@@ -1,0 +1,20 @@
+.eapps-form-header-title{
+    font-size:20px;
+}
+@media only screen and (max-width: 600px) {
+    .eapps-form-header-title{
+        text-align: center;
+    }
+    .eapps-form-header-text{
+        text-align: center;
+    }
+    .eapps-form-element-heading-title{
+        text-align: center;
+    }
+    .eapps-form-element-heading-caption{
+        text-align: center;
+    }
+    #eapps-form-1 .eapps-form-button, #eapps-form-1 .eapps-form-element-checkbox-options-item input:checked ~ .eapps-form-element-checkbox-options-item-checkmark, #eapps-form-1 .eapps-form-element-radio-options-item input:checked ~ .eapps-form-element-radio-options-item-checkmark, #eapps-form-1 .eapps-form-steps-progress-bar-inner, #eapps-form-1 .eapps-form-element-scale-numbers-options-item-input:checked + .eapps-form-element-scale-numbers-options-item-label, #eapps-form-1 .eapps-form-element-scale-numbers-options-item-input:not(:checked):hover + .eapps-form-element-scale-numbers-options-item-label, .eapps-form-floating-button {
+        margin-left: 120px;
+    }
+}
