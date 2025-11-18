@@ -717,38 +717,34 @@ $(document).ready(function () {
 
 $(document).on("click", "#whatsapp", function () {
   window.open(
-    "https://wa.me/525585730793/?text=Hola vi su sitio en Google me interesa una consulta con la Nutriologa Mónica Hernández"
+    "https://wa.me/525574699160/?text=Hola vi su sitio en Google me interesa una consulta con la Nutriologa Mónica Hernández"
   );
   window.location.href = "https://nutriologoencdmx.com/gracias-whatsapp.html";
 });
 
 $(document).on("click", "#whatsapp-l", function () {
   window.open(
-    "https://wa.me/525585730793/?text=Hola vi su sitio en Google, me interesa una consulta con la Nutrióloga Deportiva Mónica Hernández."
+    "https://wa.me/525574699160/?text=Hola vi su sitio en Google, me interesa una consulta con la Nutrióloga Deportiva Mónica Hernández."
   );
   window.location.href = "https://nutriologoencdmx.com/gracias-whatsapp.html";
 });
 
 $(document).on("click", "#whatsapp-chrismas", function () {
   window.open(
-    "https://wa.me/525585730793/?text=Hola, vi tu sitio y quiero información de Programa Fit Before Christmas."
+    "https://wa.me/525574699160/?text=Hola, vi tu sitio y quiero información de Programa Fit Before Christmas."
   );
   window.location.href = "https://nutriologoencdmx.com/gracias-whatsapp.html";
 });
 
 $(document).on("click", "#buenfin", function () {
   window.open(
-    "https://wa.me/525585730793/?text=Hola, quiero solicitar informes sobre sus paquetes del buen fin"
+    "https://wa.me/525574699160/?text=Hola, quiero solicitar informes sobre sus paquetes del buen fin"
   );
   window.location.href = "https://nutriologoencdmx.com/gracias-whatsapp.html";
 });
 
 $(document).on("click", "#telefono1", function () {
-  window.open("tel:5585730793");
-  window.location.href = "https://nutriologoencdmx.com/gracias-telefono.html";
-});
-$(document).on("click", "#telefono2", function () {
-  window.open("tel:5528680643");
+  window.open("tel:5574699160");
   window.location.href = "https://nutriologoencdmx.com/gracias-telefono.html";
 });
 
